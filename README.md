@@ -41,7 +41,7 @@
 
 ## 界面展示
 
-- 邮件提醒
+- 登录页面
 
-![image](https://github.com/wellfulren/xx/mail.png)
+![image](https://github.com/wellfulren/xuanju/blob/master/docs/img/login.png)
 
