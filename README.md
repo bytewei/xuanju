@@ -45,3 +45,22 @@
 
 ![image](https://github.com/wellfulren/xuanju/blob/master/docs/img/login.png)
 
+- 首页（地址导航页面）
+
+![image](https://github.com/wellfulren/xuanju/blob/master/docs/img/index.png)
+
+- 重要文档导航页面
+
+![image](https://github.com/wellfulren/xuanju/blob/master/docs/img/doc.png)
+
+- 找回密码页面
+
+![image](https://github.com/wellfulren/xuanju/blob/master/docs/img/forget.png)
+
+- 修改密码页面
+
+![image](https://github.com/wellfulren/xuanju/blob/master/docs/img/change.png)
+
+- 生成新密码工具页面
+
+![image](https://github.com/wellfulren/xuanju/blob/master/docs/img/tool.png)
