@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}重要文档{% endblock title %}
+
+{% block customcss %}
+    <!-- iCheck -->
+   <link href="{% static 'vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block content %}
+    <!-- page content -->
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>重要文档 <small>导航</small></h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-dark" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        {% for docclass in all_docclass %}
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>{{ docclass.name }}<small>类别</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                          </div>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                          <thead>
+                          <tr class="headings">
+                              <th class="column-title">名称 </th>
+                              <th class="column-title">地址 </th>
+                              <th class="column-title">描述 </th>
+                              <th class="column-title no-link last"><span class="nobr">操作</span></th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          {% for doc in docclass.doc_set.all %}
+                              <tr class="even pointer">
+                                  <td class=" ">{{ doc.name|truncatechars_html:10 }}</td>
+                                  <td class=" ">{{ doc.url|truncatechars_html:60 }}</td>
+                                  <td class=" ">{{ doc.remark|truncatechars_html:30 }}</td>
+                                  <td class=" last"><a href="{{ doc.url }}" target="_blank"> <strong>Go! </strong><i class="success fa fa-link"></i></a></td>
+                              </tr>
+                          {% empty %}
+                              <div class="box-card">没有找到导航信息</div>
+                          {% endfor %}
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <div class="box-item">没有找到分类信息</div>
+        {% endfor %}
+    </div>
+    <!-- /page content -->
+
+{% endblock content %}
+
+{% block customjs %}
+    <!-- iCheck -->
+    <script src="{% static 'vendors/iCheck/icheck.min.js' %}"></script>
+{% endblock customjs %}
+

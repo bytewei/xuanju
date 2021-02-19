@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}忘记密码{% endblock title %}
+
+{% block content %}
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>忘记密码 <small>导航</small></h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>设置新密码</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form action="{% url 'users:forget' %}" method="post">
+                            {% csrf_token %}
+                            <p>密码不记得或密码过期，请在这里设置新密码；新密码设置后请立即修改密码；验证码看不清，可点击验证码刷新。</p>
+                            <span class="section"> </span>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">公司邮箱<span class="required">*</span></label>
+                                <div class="form-group1">
+                                    <input class="form-control" name="email" class='email' required="required" type="email" placeholder="email@163.com"/>
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">验证码<span class="required">*</span></label>
+                                <div class="" id="jsRefreshCode">
+                                    {{ forget_form.captcha }}
+                                </div>
+                            </div>
+
+                            <div class="ln_solid">
+                                <div class="form-group">
+                                    <div class="col-md-6 offset-md-3">
+                                        <button type='submit' class="btn btn-primary">发送验证邮件</button>
+                                        <button type='reset' class="btn btn-success">重新填写</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block customjs %}
+    <script>
+        //刷新验证码
+        function refresh_captcha(event){
+            $.get("/captcha/refresh/?"+Math.random(), function(result){
+                $('#jsRefreshCode img.captcha').attr("src",result.image_url);
+                $('#id_captcha_0').attr("value",result.key);
+            });
+            return false;
+        }
+
+        window.onload = function(){
+           //刷新验证码
+            $('#jsRefreshCode img.captcha').on('click', function(){
+                refresh_captcha();
+            });
+        }
+    </script>
+{% endblock customjs %}

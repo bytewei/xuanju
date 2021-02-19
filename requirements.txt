@@ -1,0 +1,7 @@
+Django==2.2.12
+mysqlclient
+django-simpleui
+requests
+django-freeipa-auth-json
+python-freeipa
+django-simple-captcha
